@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +48,16 @@ class Comment
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->getEmail();
+    }
 
     public function getId(): ?int
     {
